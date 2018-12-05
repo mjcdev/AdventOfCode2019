@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOC2019", "AOC2019\AOC2019.csproj", "{88DF6834-ED88-4729-971D-96025798873B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOC2019.Tests", "AOC2019.Tests\AOC2019.Tests.csproj", "{59CA0AEA-6BF7-4B3A-A648-4082EA9DB147}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88DF6834-ED88-4729-971D-96025798873B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88DF6834-ED88-4729-971D-96025798873B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88DF6834-ED88-4729-971D-96025798873B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88DF6834-ED88-4729-971D-96025798873B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59CA0AEA-6BF7-4B3A-A648-4082EA9DB147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CA0AEA-6BF7-4B3A-A648-4082EA9DB147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59CA0AEA-6BF7-4B3A-A648-4082EA9DB147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CA0AEA-6BF7-4B3A-A648-4082EA9DB147}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EB767AB-5525-41C0-95D4-43F1013C2E8B}
+	EndGlobalSection
+EndGlobal
