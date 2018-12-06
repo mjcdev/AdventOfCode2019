@@ -57,12 +57,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Three\DayThreeTests.cs" />
     <Compile Include="Two\DayTwoTests.cs" />
     <Content Include="One\One.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="One\DayOneTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Three\Three.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Two\Two.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
