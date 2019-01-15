@@ -22,6 +22,14 @@ namespace AOC2019.Tests.Five
             var result = NewDay().PartOne(input);
         }
 
+        [Fact]
+        public void PartTwo()
+        {
+            var input = File.ReadAllText(FileName);
+
+            var result = NewDay().PartTwo(input);
+        }
+
         [Theory]
         [InlineData('A', 'a')]
         [InlineData('a', 'A')]
