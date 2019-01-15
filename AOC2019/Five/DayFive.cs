@@ -11,19 +11,22 @@ namespace AOC2019.Five
         {
             var outputPolymer = React(input);
 
+            var last = outputPolymer.Last();
+
             return outputPolymer.Length;
         }
 
-        public bool IsMatch(string left, string right)        
+        public bool IsMatch(char left, char right)        
         {
-            return left.ToUpper() == right || right.ToUpper() == left;
+            return left != right 
+                && char.ToUpper(left) ==  char.ToUpper(right);
         }
         
-        public int IndexOfMatch(List<string> inputStrings)
+        public int IndexOfMatch(string inputString)
         {
-            for (var i = 0; i < inputStrings.Count - 1; i++)
+            for (var i = 0; i < inputString.Length - 1; i++)
             {
-                if (IsMatch(inputStrings[i], inputStrings[i + 1]))
+                if (IsMatch(inputString[i], inputString[i + 1]))
                 {
                     return i;
                 }
@@ -32,19 +35,18 @@ namespace AOC2019.Five
             return -1;
         }
 
-        public string React(string inputPolymer)
+        public string React(string polymer)
         {
-            var polymerList = inputPolymer.ToCharArray().Select(c => c.ToString()).ToList();
 
-            var index = IndexOfMatch(polymerList);
+            var index = IndexOfMatch(polymer);
 
             while (index != NoMatch)
             {
-                polymerList.RemoveRange(index, 2);
-                index = IndexOfMatch(polymerList);
+                polymer = polymer.Remove(index, 2);
+                index = IndexOfMatch(polymer);
             }
 
-            return string.Concat(polymerList);
+            return polymer;
         }
     }
 }

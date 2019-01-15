@@ -23,17 +23,17 @@ namespace AOC2019.Tests.Five
         }
 
         [Theory]
-        [InlineData("A", "a")]
-        [InlineData("a", "A")]
-        public void IsMatch_True(string left, string right)
+        [InlineData('A', 'a')]
+        [InlineData('a', 'A')]
+        public void IsMatch_True(char left, char right)
         {
             NewDay().IsMatch(left, right).Should().BeTrue();
         }
 
         [Theory]
-        [InlineData("a", "b")]
-        [InlineData("a", "a")]
-        public void IsMatch_False(string left, string right)
+        [InlineData('a', 'b')]
+        [InlineData('a', 'a')]
+        public void IsMatch_False(char left, char right)
         {
             NewDay().IsMatch(left, right).Should().BeFalse();
         }
