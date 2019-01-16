@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Five\DayFiveTests.cs" />
     <Compile Include="Four\DayFourTests.cs" />
+    <Compile Include="Six\DaySixTests.cs" />
     <Compile Include="Three\DayThreeTests.cs" />
     <Compile Include="Two\DayTwoTests.cs" />
     <Content Include="Five\Five.txt">
@@ -80,6 +81,9 @@
     </Content>
     <Compile Include="One\DayOneTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Six\Six.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Three\Three.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -99,6 +103,7 @@
       <Name>AOC2019</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
