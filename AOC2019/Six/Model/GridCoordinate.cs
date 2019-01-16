@@ -3,5 +3,7 @@
     public class GridCoordinate : AbstractCoordinate
     {
         public int ClosestCoordinateId { get; set; }
+
+        public int DistanceToRootCoordinates { get; set; }
     }
 }

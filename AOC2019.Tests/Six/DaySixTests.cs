@@ -23,6 +23,14 @@ namespace AOC2019.Tests.Six
             var result = NewDay().PartOne(input);
         }
 
+        [Fact]
+        public void PartTwo()
+        {
+            var input = File.ReadAllLines(FileName);
+
+            var result = NewDay().PartTwo(input);
+        }
+
         [Theory]
         [InlineData(0, 0, 3, 3, 6)]
         [InlineData(0, 0, -3, -3, 6)]

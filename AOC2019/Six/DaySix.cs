@@ -15,9 +15,7 @@ namespace AOC2019.Six
             var rootCoordinates = BuildRootCoordinates(records);
 
             var grid = BuildGridCoordinates(rootCoordinates);
-
-            grid = RemoveRootCoordinates(grid, rootCoordinates);
-
+            
             foreach (var gridCoordinate in grid)
             {
                 gridCoordinate.ClosestCoordinateId = CalculateClosestPoint(gridCoordinate, rootCoordinates);
@@ -27,8 +25,27 @@ namespace AOC2019.Six
             grid = RemoveInfiniteSpaceCoordinates(grid);
 
             var largestAreaSize = grid.GroupBy(gc => gc.ClosestCoordinateId).Max(g => g.Count());
+
+            return largestAreaSize;
+        }
+
+        public int PartTwo(IEnumerable<string> records)
+        {
+            var rootCoordinates = BuildRootCoordinates(records);
+
+            var grid = BuildGridCoordinates(rootCoordinates);
             
-            return largestAreaSize + 1; // Root Coordinate
+            foreach (var gridCoordinate in grid)
+            {
+                gridCoordinate.DistanceToRootCoordinates = CalculateTotalDistanceToAllRootCoordinates(gridCoordinate, rootCoordinates);
+            }
+
+            grid = RemoveDrawingDistanceCoordinates(grid);
+            grid = RemoveInfiniteSpaceCoordinates(grid);
+
+            var safeAreaSize = grid.Count(gc => gc.DistanceToRootCoordinates < 10000);
+
+            return safeAreaSize;
         }
 
         private IEnumerable<RootCoordinate> BuildRootCoordinates(IEnumerable<string> input)
@@ -89,12 +106,12 @@ namespace AOC2019.Six
 
             return closestGrouping.First().Id;
         }
-        
-        public IEnumerable<GridCoordinate> RemoveRootCoordinates(IEnumerable<GridCoordinate> gridCoordinates, IEnumerable<RootCoordinate> rootCoordinates)
-        {
-            return gridCoordinates.Where(gc => !rootCoordinates.Any(rc => gc.X == rc.X && gc.Y == rc.Y));
-        }        
 
+        public int CalculateTotalDistanceToAllRootCoordinates(GridCoordinate gridCoordinate, IEnumerable<RootCoordinate> rootCoordinates)
+        {
+            return rootCoordinates.Sum(c => CalculateManhattanDistance(gridCoordinate, c));
+        }
+        
         public IEnumerable<GridCoordinate> RemoveDrawingDistanceCoordinates(IEnumerable<GridCoordinate> gridCoordinates)
         {
             return gridCoordinates.Where(gc => gc.ClosestCoordinateId != DrawDistanceId);
@@ -110,8 +127,6 @@ namespace AOC2019.Six
             var distinctInfiniteIds = gridCoordinates.Where(gc => gc.X == maxX || gc.X == minX || gc.Y == maxY || gc.Y == minY).ToList();
 
             return gridCoordinates.Where(gc => !distinctInfiniteIds.Contains(gc));
-
-
         }
     }
 }
