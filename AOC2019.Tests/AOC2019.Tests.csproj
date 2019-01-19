@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Five\DayFiveTests.cs" />
     <Compile Include="Four\DayFourTests.cs" />
+    <Compile Include="Seven\DaySevenTests.cs" />
     <Compile Include="Six\DaySixTests.cs" />
     <Compile Include="Three\DayThreeTests.cs" />
     <Compile Include="Two\DayTwoTests.cs" />
@@ -81,6 +82,9 @@
     </Content>
     <Compile Include="One\DayOneTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Seven\Seven.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Six\Six.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
