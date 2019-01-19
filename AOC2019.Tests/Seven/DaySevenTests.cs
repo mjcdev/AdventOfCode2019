@@ -25,7 +25,9 @@ namespace AOC2019.Tests.Seven
         [Fact]
         public void PartTwo()
         {
+            var input = File.ReadAllLines(FileName);
 
+            var result = NewDay().PartTwo(input);
         }
 
         [Fact]

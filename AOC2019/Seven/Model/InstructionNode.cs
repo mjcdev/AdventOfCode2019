@@ -16,6 +16,6 @@ namespace AOC2019.Seven.Model
 
         public int Remaining { get; set; }
 
-        public int WorkerNumber { get; set; }
+        public Worker Worker { get; set; }
     }
 }
