@@ -65,12 +65,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Eight\DayEightTests.cs" />
     <Compile Include="Five\DayFiveTests.cs" />
     <Compile Include="Four\DayFourTests.cs" />
     <Compile Include="Seven\DaySevenTests.cs" />
     <Compile Include="Six\DaySixTests.cs" />
     <Compile Include="Three\DayThreeTests.cs" />
     <Compile Include="Two\DayTwoTests.cs" />
+    <Content Include="Eight\Eight.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Five\Five.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
