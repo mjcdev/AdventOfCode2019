@@ -68,6 +68,7 @@
     <Compile Include="Eight\DayEightTests.cs" />
     <Compile Include="Five\DayFiveTests.cs" />
     <Compile Include="Four\DayFourTests.cs" />
+    <Compile Include="Nine\DayNineTests.cs" />
     <Compile Include="Seven\DaySevenTests.cs" />
     <Compile Include="Six\DaySixTests.cs" />
     <Compile Include="Three\DayThreeTests.cs" />
