@@ -8,45 +8,38 @@ namespace AOC2019.Nine
 {
     public class DayNine
     {
-        public int PartOne(int playerCount, int lastMarbleWorth)
+        public long GetMaxScore(int playerCount, int lastMarbleWorth)
         {
             var game = new Game(playerCount, lastMarbleWorth);
 
-            game = TakeTurns(game);
+            game = TakeTurns(game, lastMarbleWorth);
 
             return game.PlayerScore.Values.Max();
         }
 
-        public Game TakeTurns(Game game)
+        public Game TakeTurns(Game game, int lastMarbleWorth)
         {
-            while (!game.Finished)
+            for (var marbleValue = 1; marbleValue <= lastMarbleWorth; marbleValue++)
             {
-                game = TakeTurn(game);
+                game = TakeTurn(game, marbleValue);
             }
 
             return game;
         }
 
-        public Game TakeTurn(Game game)
+        public Game TakeTurn(Game game, int marbleValue)
         {
-            game.CurrentPlayer = IncrementPlayer(game.CurrentPlayer, game.PlayerCount);
-            game.CurrentMarble++;
+            game.CurrentPlayer = IncrementPlayer(game.CurrentPlayer, game.PlayerScore.Count);
 
-            // do current turn;
-            if (IsScoringMarble(game.CurrentMarble))
+            if (IsScoringMarble(marbleValue))
             {
-                game = Score(game);
+                game = Score(game, marbleValue);
             }
             else
             {
-                game = NoScore(game);
+                game = NoScore(game, marbleValue);
             }
-
-            if (game.CurrentMarble == game.LastMarbleWorth)
-            {
-                game.Finished = true;
-            }
-            
+                        
             return game;
         }
 
@@ -65,33 +58,30 @@ namespace AOC2019.Nine
             return currentMarble % 23 == 0;
         }
 
-        public Game Score(Game game)
+        public Game Score(Game game, int marbleValue)
         {
-            game.CurrentMarbleIndex = game.CurrentMarbleIndex - 7 >= 0 ? game.CurrentMarbleIndex - 7 : game.CurrentMarbleIndex - 7 + game.Marbles.Count;
+            game.CurrentNode = game.CurrentNode
+                .MovePreviousNode()
+                .MovePreviousNode()
+                .MovePreviousNode()
+                .MovePreviousNode()
+                .MovePreviousNode()
+                .MovePreviousNode();                
 
-            var score = game.CurrentMarble + game.Marbles[game.CurrentMarbleIndex];
+            var score = marbleValue + game.CurrentNode.MovePreviousNode().Value;
 
             game.PlayerScore[game.CurrentPlayer] += score;
 
-            game.Marbles.RemoveAt(game.CurrentMarbleIndex);            
-
-            if (score == game.LastMarbleWorth)
-            {
-                game.Finished = true;                
-            }
-
+            game.Marbles.Remove(game.CurrentNode.MovePreviousNode());
+                        
             return game;
         }
 
-        public Game NoScore(Game game)
-        {
-            game.CurrentMarbleIndex = game.CurrentMarbleIndex + 2 <= game.Marbles.Count ? game.CurrentMarbleIndex + 2 : game.CurrentMarbleIndex + 2 - game.Marbles.Count;
-
-            game.Marbles.Insert(game.CurrentMarbleIndex, game.CurrentMarble);
+        public Game NoScore(Game game, int marbleValue)
+        {            
+            game.CurrentNode = game.Marbles.AddBefore(game.CurrentNode.MoveNextNode().MoveNextNode(), marbleValue);
 
             return game;
         }
-
-        
     }
 }

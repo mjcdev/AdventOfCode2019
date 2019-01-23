@@ -15,13 +15,13 @@ namespace AOC2019.Tests.Nine
         [Fact]
         public void PartOne()
         {
-            var result = NewDay().PartOne(476, 71657);
+            var result = NewDay().GetMaxScore(476, 71657);
         }
 
         [Fact]
         public void PartTwo()
         {
-            var result = NewDay().PartOne(476, 71657 * 100);
+            var result = NewDay().GetMaxScore(476, 71657 * 100);
         }
 
         [Theory]
@@ -32,7 +32,7 @@ namespace AOC2019.Tests.Nine
         [InlineData(30, 5807, 37305)]
         public void Examples(int playerCount, int lastMarbleWorth, int maxScore)
         {
-            NewDay().PartOne(playerCount, lastMarbleWorth).Should().Be(maxScore);
+            NewDay().GetMaxScore(playerCount, lastMarbleWorth).Should().Be(maxScore);
         }
 
         [Theory]
@@ -64,11 +64,11 @@ namespace AOC2019.Tests.Nine
         {
             var game = new Game(3, 0);
 
-            game.Marbles = new List<int>() { 0, 2, 1, 3, };
-            game.CurrentMarbleIndex = 3;
-            game.CurrentMarble = 4;
-
-            NewDay().NoScore(game);
+            game.Marbles.AddLast(2);
+            game.Marbles.AddLast(1);
+            game.CurrentNode = game.Marbles.AddLast(3);
+            
+            NewDay().NoScore(game, 4);
 
             game.Marbles.Should().HaveCount(5);
             game.Marbles.Should().ContainInOrder(0, 4, 2, 1, 3);

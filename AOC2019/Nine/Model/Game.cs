@@ -6,31 +6,26 @@ namespace AOC2019.Nine.Model
     {
         public Game(int playerCount, int lastMarbleWorth)
         {
-            PlayerCount = playerCount;
-            LastMarbleWorth = lastMarbleWorth;
+            PlayerScore = new Dictionary<int, long>();
 
-            PlayerScore = new Dictionary<int, int>();
-
-            for (var i = 0; i < PlayerCount; i++)
+            for (var i = 0; i < playerCount; i++)
             {
                 PlayerScore.Add(i, 0);
             }
+
+            Marbles = new LinkedList<int>();            
+
+            Marbles.AddFirst(0);
+
+            CurrentNode = Marbles.First;
         }
-
-        public bool Finished { get; set; }
-
-        public int PlayerCount { get; set; }
-
-        public int CurrentMarble { get; set; }
-
-        public int CurrentMarbleIndex { get; set; } = 0;
-
+                        
         public int CurrentPlayer { get; set; } = - 1;
+        
+        public LinkedList<int> Marbles { get; set; }
 
-        public int LastMarbleWorth { get; set; }
+        public LinkedListNode<int> CurrentNode { get; set; }
 
-        public List<int> Marbles { get; set; } = new List<int>() { 0 };
-
-        public Dictionary<int, int> PlayerScore { get; set; }
+        public Dictionary<int, long> PlayerScore { get; set; }
     }
 }
