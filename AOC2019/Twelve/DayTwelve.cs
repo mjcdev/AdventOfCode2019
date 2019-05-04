@@ -9,11 +9,13 @@ namespace AOC2019.Twelve
 {
     public class DayTwelve
     {
-        private const long Generations = 20;
+        private const long Generations = 2000;
 
-        public int Run(string filePath)
+        private int PreviousSum = 0;
+        private int PreviousDifference = 0;
+
+        public long Run(string filePath)
         {
-
             var lines = File.ReadAllLines(filePath).ToList();
             
             var masks = lines.GetRange(2, lines.Count - 2).Select(l => new Mask(l.Substring(0, 5), l[9]));
@@ -29,6 +31,7 @@ namespace AOC2019.Twelve
 
             for (long i = 0; i < Generations; i++)
             {
+                // Clean Up Edges
                 if (!(!pots[4] && !pots[3] && !pots[2] && !pots[1] && !pots[0]))
                 {
                     pots.InsertRange(0, emptyPots);
@@ -53,9 +56,20 @@ namespace AOC2019.Twelve
                                
                 pots = ApplyMasks(pots, masks);
 
-                //Console.WriteLine(pots);
+                var currentSum = CalculateSum(pots, offset);
+                Console.WriteLine($"{CalculateSum(pots, offset)} - {currentSum - PreviousSum}");
+                
+                PreviousDifference = currentSum - PreviousSum;
+                PreviousSum = currentSum;
             }
 
+            var sum = CalculateSum(pots, offset);
+
+            return sum + (50000000000 - Generations) * PreviousDifference;
+        }
+
+        public int CalculateSum(List<bool> pots, int offset)
+        {
             var sum = 0;
 
             for (var potWithOffset = 0; potWithOffset < pots.Count; potWithOffset++)
@@ -66,7 +80,6 @@ namespace AOC2019.Twelve
                     sum += potWithoutOffset;
                 }
             }
-
 
             return sum;
         }
